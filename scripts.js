@@ -1,17 +1,5 @@
 
 
-/*function clickyText() {
-	var paraWords = 	fetch('http://baseballipsum.apphb.com/api/?paras=3')
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(myJson) {
-			console.log(myJson);
-		});
-   return paraWords
-}
-*/
-
 
 function createNode(element) {
 	return document.createElement(element);
@@ -23,25 +11,30 @@ function append(parent, el) {
 
 const paras = document.getElementById('newParas');
 const url = 'http://baseballipsum.apphb.com/api/?paras=3';
-var data = {int:'example'};
 
-function paraData(url,data) {
+
+function fetchData() {
 	fetch(url)
-		.then((resp) => resp.json())
-		.then(function(data) {
-			let paragraphs = data.results;
-			return paragraphs.map(function(paragraphs) {
-				let p = createNode('p');
-				append(paras, p);
-				append(paras, p);
-				append(paras, p);
-			})
-		})
-		.catch(function(error) {
-			console.log(JSON.stringify(error));
-		});
+		.then(function(response) {
 
-paraData(url,data);
+			//catch any requests that aren't 200 OK
+			if(response.status !== 200) {
+				alert('Wtf di you do!? JK: ' . response.status);
+				return;
+			}
+
+		response.json().then(function(data){
+			document.getElementById("fetchData").innerHTML = data;
+				})
+			})
+
+		.catch(function(error) {
+			alert((JSON.stringify(error));
+		})
+}
+
+
+
 
 /*
 // takes a string to split into an array of words.
