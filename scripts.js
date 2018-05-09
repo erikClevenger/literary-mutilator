@@ -13,6 +13,10 @@ const paras = document.getElementById('newParas');
 const url = 'http://baseballipsum.apphb.com/api/?paras=3';
 
 
+/*
+ * borrow some of this from @brentTheDev
+ *
+*/
 function fetchData() {
 	fetch(url)
 		.then(function(response) {
@@ -29,7 +33,7 @@ function fetchData() {
 			})
 
 		.catch(function(error) {
-			alert((JSON.stringify(error));
+			alert((JSON.stringify(error)));
 		})
 }
 
